@@ -1,11 +1,3 @@
-# Vue Your Todos
-
-A unique take on the TodoMVC app that is built using a custom design with:
-
-- [Vite](https://github.com/vitejs/vite)
-- [Vue 3](https://v3.vuejs.org/)
-- [Zeplin](https://zeplin.io/)
-- [Netlify](https://www.netlify.com/?utm_source=github&utm_medium=vueyourtodos-bh&utm_campaign=devex)
 
 ## ⚠️ Important Note
 
