@@ -72,7 +72,9 @@ const store = createStore({
       getTasksOpens: state => { return state.issues.filter(issue => issue.status === "open" && issue.trash === "false")},
       getTasksDone: state => { return state.issues.filter(issue => issue.status === "done" && issue.trash === "false")},
       getTasksTrash: state => { return state.issues.filter(issue => issue.trash === "true")},
-      getCount: state => {return state.issues.filter(issues => issues.status).length }
+      getCountOpen: state => {return state.issues.filter(issue => issue.status === 'open' && issue.trash === "false").length }, 
+      getCountDone: state => {return state.issues.filter(issue => issue.status === 'done' && issue.trash === "false").length },
+      getCountTrash: state => {return state.issues.filter(issue => issue.trash === 'true').length }
       
     },
     actions: {},

@@ -26,23 +26,20 @@
         <div class="card" style="width: 18rem;">
           <div class="card-body">
             <h5 class="card-title">{{ item.name }}</h5>
-            <input :value="item.description" @input="inputDescChange($event, item.id)" />
+            <input class="form-control" :value="item.description" @input="inputDescChange($event, item.id)" />
             <hr />
-            <button @click.prevent="doneTask(item.id)" class="btn btn-primary">Done</button>
+            <button @click.prevent="doneTask(item.id)" class="btn btn-primary me-2">Done</button>
             <button @click.prevent="trashTask(item.id)" class="btn btn-danger">Trash</button>
           </div>
         </div>
-
       </div>
-
-
     </div>
   </div>
   <div class="footer py-4 border-top">
     <div class="container">
       <div class="row justify-content-center text-center">
         <div class="col-12">
-          <h4> <span class="badge bg-warning text-dark me-2"> {{ totalCount }}</span>Total Issues</h4>
+          <h4> <span class="badge bg-warning text-dark me-2"> {{ opentotalCount }}</span>Open Issues</h4>
         </div>
       </div>
     </div>
@@ -66,7 +63,7 @@ export default {
   computed: {
     ...mapGetters({
       tasks: 'getTasksOpens',
-      totalCount: 'getCount'
+      opentotalCount: 'getCountOpen'
     })
   },
   methods: {
@@ -104,10 +101,23 @@ export default {
 </script>
 
 <style>
+html,
+body {
+   margin:0;
+   padding:0;
+   height:100%;
+}
+
+#app {
+  min-height: 100%; 
+  position: relative;
+}
+
 .footer {
   position: absolute;
   bottom: 0;
-  left: 0;
-  right: 0;
+  width: 100%;
+  /* Height of the footer */
+  
 }
 </style>
