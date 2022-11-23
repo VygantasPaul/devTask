@@ -9,10 +9,12 @@
           <input :value="item.description" @input="inputDescChange($event, item.id)"/>
           <hr/>
           
+        <!-- Cheking button status -->
           <button v-if="item.status === 'open'" @click.prevent="doneTask(item.id)" class="btn btn-primary">Done</button>
 
           <button v-if="item.status === 'done'" @click.prevent="notDoneTask(item.id)" class="btn btn-primary">Not Done</button>
-          
+         <!--  -->
+
           <button @click.prevent="notTrashTask(item.id)" class="btn btn-danger">Not Trash</button>
         </div>
       </div>

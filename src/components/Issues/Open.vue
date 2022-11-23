@@ -1,41 +1,52 @@
 <template>
 
-<div class="container mt-5">
-  <div class="row">
+  <div class="container mt-5">
+    <div class="row">
 
-    <form @submit.prevent="submit">
-      <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Task name</label>
-        <input type="text" v-model="this.name" class="form-control" id="exampleInputPassword1">
-      </div>
-      <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Description</label>
-        <input type="text" v-model="this.description" class="form-control" id="exampleInputPassword1">
-      </div>
-      <button type="submit" class="btn btn-primary">Save</button>
-    </form>
+      <form @submit.prevent="submit">
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Task name</label>
+          <input type="text" v-model="this.name" class="form-control" id="exampleInputPassword1">
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputPassword1" class="form-label">Description</label>
+          <input type="text" v-model="this.description" class="form-control" id="exampleInputPassword1">
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+      </form>
 
+    </div>
   </div>
-</div>
 
-<hr/>
+  <hr />
 
-<div class="container">
-  <div class="row">
-    <div class="col-3" v-for="item in tasks" :key="item.name">
-      <div class="card" style="width: 18rem;">
-        <div class="card-body">
-          <h5 class="card-title">{{item.name}}</h5>
-          <input :value="item.description" @input="inputDescChange($event, item.id)"/>
-          <hr/>
-          <button @click.prevent="doneTask(item.id)" class="btn btn-primary">Done</button>
-          <button @click.prevent="trashTask(item.id)" class="btn btn-danger">Trash</button>
+  <div class="container">
+    <div class="row justify-content-center text-center">
+      <div class="col-12 col-lg-3 pb-3" v-for="item in tasks" :key="item.name">
+        <div class="card" style="width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">{{ item.name }}</h5>
+            <input :value="item.description" @input="inputDescChange($event, item.id)" />
+            <hr />
+            <button @click.prevent="doneTask(item.id)" class="btn btn-primary">Done</button>
+            <button @click.prevent="trashTask(item.id)" class="btn btn-danger">Trash</button>
+          </div>
+        </div>
+
+      </div>
+
+
+    </div>
+  </div>
+  <div class="footer py-4 border-top">
+    <div class="container">
+      <div class="row justify-content-center text-center">
+        <div class="col-12">
+          <h4> <span class="badge bg-warning text-dark me-2"> {{ totalCount }}</span>Total Issues</h4>
         </div>
       </div>
     </div>
   </div>
-</div>
-
 </template>
 
 <script>
@@ -44,7 +55,7 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'OpenIssues',
   data() {
-    return { 
+    return {
       name: '',
       description: '',
       status: 'open',
@@ -54,7 +65,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      tasks: 'getTasksOpens'
+      tasks: 'getTasksOpens',
+      totalCount: 'getCount'
     })
   },
   methods: {
@@ -90,3 +102,12 @@ export default {
   }
 }
 </script>
+
+<style>
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+</style>
