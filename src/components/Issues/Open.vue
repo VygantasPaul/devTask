@@ -47,7 +47,7 @@ export default {
     return { 
       name: '',
       description: '',
-      status: 'done',
+      status: 'open',
       id: Math.floor(900000 * Math.random()) + 100000,
       trash: 'false'
     }
