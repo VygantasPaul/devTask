@@ -2,26 +2,26 @@
   <div class="content">
     <div class="container mt-5">
       <div class="row">
-        <div class="col-12 col-lg-3" v-for="item in tasks" :key="item.name">
+        <div class="col-3" v-for="item in tasks" :key="item.name">
           <div class="card" style="width: 20rem;">
-            <div class="card-body"> 
+            <div class="card-body">
               <h5 class="card-title">{{ item.name }}</h5>
               <input class="form-control" :value="item.description" @input="inputDescChange($event, item.id)" />
-              <hr />
-              <button @click.prevent="notDoneTask(item.id)" class="btn btn-primary me-2">Not Done</button>
-              <button @click.prevent="trashTask(item.id)" class="btn btn-danger me-2">Trash</button>
-              <button @click.prevent="overDueTask(item.id)" class="btn btn-danger">Overdue</button>
+              <hr /> 
+              <button  v-if="item.status === 'overdue'" @click.prevent="notOverdueTask(item.id)" class="btn btn-primary me-2">Not Overdue</button>
+              <button @click.prevent="doneTask(item.id)" class="btn btn-danger me-2">Done</button>
+              <button @click.prevent="trashTask(item.id)" class="btn btn-danger">Trash</button>
             </div>
           </div>
         </div>
       </div>
-    </div> 
+    </div>
   </div>
   <div class="footer py-4 border-top">
     <div class="container">
       <div class="row justify-content-center text-center">
         <div class="col-12">
-          <h4> <span class="badge bg-success text-white me-2"> {{ donetotalCount }}</span>Done Issues</h4>
+          <h4> <span class="badge bg-danger text-white me-2"> {{ getCountOverdue }}</span>Overdue Issues</h4>
         </div>
       </div>
     </div>
@@ -32,11 +32,11 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'DoneIssues',
+  name: 'OverdueIssues',
   computed: {
     ...mapGetters({
-      tasks: 'getTasksDone',
-      donetotalCount: 'getCountDone'
+      tasks: 'getTasksOverdue',
+       getCountOverdue: 'getCountOverdue'
     })
   },
   methods: {
@@ -46,13 +46,8 @@ export default {
       })
 
     },
-    overDueTask(task) {
-      this.$store.commit('overDueTodoTask', {
-        id: task,
-      })
-    },
-    notDoneTask(task) {
-      this.$store.commit('notDoneTodoTask', {
+    doneTask(task) {
+      this.$store.commit('doneTodoTask', {
         id: task,
       })
     },
@@ -61,7 +56,12 @@ export default {
         description: event.target.value,
         id: task
       })
-    }
+    },
+    notOverdueTask(task) { 
+      this.$store.commit('notOverdueTodoTask', {
+        id: task,
+      })
+    },
   }
 }
 </script>

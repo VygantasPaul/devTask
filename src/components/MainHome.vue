@@ -19,5 +19,7 @@
 <script>
 export default {
   name: 'MainHome',
+ 
 }
+
 </script>

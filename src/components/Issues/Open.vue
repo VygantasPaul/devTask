@@ -1,8 +1,7 @@
 <template>
-
+ <div class="content">
   <div class="container mt-5">
     <div class="row">
-
       <form @submit.prevent="submit">
         <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">Task name</label>
@@ -17,24 +16,24 @@
 
     </div>
   </div>
-
   <hr />
-
   <div class="container">
     <div class="row justify-content-center text-center">
       <div class="col-12 col-lg-3 pb-3" v-for="item in tasks" :key="item.name">
         <div class="card" style="width: 18rem;">
-          <div class="card-body">
-            <h5 class="card-title">{{ item.name }}</h5>
+          <div class="card-body"> 
+            <h5 class="card-title">{{ item.name }} </h5>
             <input class="form-control" :value="item.description" @input="inputDescChange($event, item.id)" />
             <hr />
             <button @click.prevent="doneTask(item.id)" class="btn btn-primary me-2">Done</button>
-            <button @click.prevent="trashTask(item.id)" class="btn btn-danger">Trash</button>
+            <button @click.prevent="trashTask(item.id)" class="btn btn-danger me-2">Trash</button>
+            <button @click.prevent="overdueTask(item.id)" class="btn btn-danger">Overdue</button>
           </div>
         </div>
       </div>
     </div>
   </div>
+</div>
   <div class="footer py-4 border-top">
     <div class="container">
       <div class="row justify-content-center text-center">
@@ -90,6 +89,11 @@ export default {
         id: task,
       })
     },
+    overdueTask(task) {
+      this.$store.commit('overDueTodoTask', {
+        id: task,
+      })
+    },
     inputDescChange(event, task) {
       this.$store.commit('editTodoTask', {
         description: event.target.value,
@@ -101,23 +105,5 @@ export default {
 </script>
 
 <style>
-html,
-body {
-   margin:0;
-   padding:0;
-   height:100%;
-}
-
-#app {
-  min-height: 100%; 
-  position: relative;
-}
-
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  /* Height of the footer */
-  
-}
+ 
 </style>
