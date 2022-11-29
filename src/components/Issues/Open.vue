@@ -19,7 +19,7 @@
   <hr />
   <div class="container">
     <div class="row justify-content-center text-center">
-      <div class="col-12 col-lg-3 pb-3" v-for="item in tasks" :key="item.name">
+      <div class="col-12 col-sm-5 col-xl-3 pb-3" v-for="item in tasks" :key="item.name">
         <div class="card" style="width: 18rem;">
           <div class="card-body"> 
             <h5 class="card-title">{{ item.name }} </h5>

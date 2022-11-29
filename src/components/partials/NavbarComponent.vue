@@ -3,7 +3,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="container-fluid">
       <router-link class="navbar-brand" :to="{name:'HomePage'}">Home</router-link>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"  @click.stop="toggleNavbar()">
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"  @click.prevent="toggleNavbar()">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent" v-bind:class=" { 'show': show }">
@@ -14,7 +14,7 @@
           <li class="nav-item">
             <router-link v-bind:class="{'nav-link':true, 'active':(this.$route.name === 'IssuesDone')}" :to="{name:'IssuesDone'}">Done</router-link>
           </li>
-          <li class="nav-item">
+          <li class="nav-item"> 
             <router-link v-bind:class="{'nav-link':true, 'active':(this.$route.name === 'IssuesTrashed')}" :to="{name:'IssuesTrashed'}">Trashed</router-link>
           </li>
           <li class="nav-item">
